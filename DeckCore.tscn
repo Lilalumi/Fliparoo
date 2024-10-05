@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://deb3os1rrd7ug"]
+
+[ext_resource type="Script" path="res://scripts/DeckCore.gd" id="1_7g3cf"]
+[ext_resource type="Script" path="res://scripts/CardTextureManager.gd" id="2_20j86"]
+
+[node name="DeckCore" type="Node"]
+script = ExtResource("1_7g3cf")
+
+[node name="CardTextureManager" type="Node" parent="."]
+script = ExtResource("2_20j86")

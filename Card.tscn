@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bantm7pxextq4"]
+
+[ext_resource type="Script" path="res://scripts/Card.gd" id="1_opy15"]
+
+[node name="Card" type="Sprite2D"]
+script = ExtResource("1_opy15")
