@@ -3,10 +3,24 @@ extends Node2D
 @onready var sprite = $Sprite2D
 @onready var deck_playing = get_node("/root/Board/DeckPlaying")
 var remaining_cards = 0
+var wave_amplitude = 0  # Ajusta la amplitud del efecto wave
+var wave_speed = 2  # Ajusta la velocidad de oscilación
+var time = 0  # Variable para el tiempo
+
 
 func _ready():
+	wave_amplitude = randf_range(5, 10)
 	_choose_card()
+	set_process(true)
 	
+func _process(delta):
+	time += delta
+	var wave_offset = sin(time * wave_speed) + wave_amplitude
+	sprite.position.y = 22 + wave_offset
+	#sprite.position.x = 0 + sin(time * wave_speed) * wave_amplitude
+	
+	
+
 func _choose_card():
 	print(deck_playing.deck_playing.size())
 	
@@ -22,9 +36,6 @@ func _choose_card():
 		sprite.texture = card.image
 	
 		print("Carta en juego: ", card.suit, " ", card.number, " Modifier: ", card.modifier)
-	
-	#print("Quedan cartas ", remaining_cards, "en DeckPlaying")
-	#else:
-		#print("No quedan cartas en DeckPlaying")
-		
+			
 	print(deck_playing.deck_playing.size())
+	
