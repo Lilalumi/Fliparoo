@@ -10,4 +10,3 @@ func _process(delta):
 func _load_card_in_play():
 	card_in_play_instance = CardInPLayScene.instantiate()
 	add_child(card_in_play_instance)
-	card_in_play_instance.position = Vector2(47, 40)
