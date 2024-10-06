@@ -5,11 +5,14 @@ extends Node2D
 var remaining_cards = 0
 var wave_amplitude = 0  # Ajusta la amplitud del efecto wave
 var wave_speed = 2  # Ajusta la velocidad de oscilación
+var rotation_amplitude = 0
+var rotation_speed = 1.5
 var time = 0  # Variable para el tiempo
 
 
 func _ready():
 	wave_amplitude = randf_range(5, 10)
+	rotation_amplitude = randf_range(1, 5)
 	_choose_card()
 	set_process(true)
 	
@@ -19,6 +22,8 @@ func _process(delta):
 	sprite.position.y = 22 + wave_offset
 	#sprite.position.x = 0 + sin(time * wave_speed) * wave_amplitude
 	
+	var rotation_offset = sin(time * rotation_speed) * deg_to_rad(rotation_amplitude)
+	sprite.rotation = rotation_offset
 	
 
 func _choose_card():
