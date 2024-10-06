@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dypd2wntakcct"]
+
+[ext_resource type="Script" path="res://scripts/CardInPlay.gd" id="1_helj1"]
+[ext_resource type="Texture2D" uid="uid://bu0j236u5arcf" path="res://assets/art/sprites/cards/others/question.png" id="2_16aay"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_helj1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_16aay")

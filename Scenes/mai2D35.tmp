@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://b3bso507aibcx"]
+
+[ext_resource type="PackedScene" uid="uid://deb3os1rrd7ug" path="res://Scenes/DeckCore.tscn" id="2_da83w"]
+[ext_resource type="PackedScene" uid="uid://c0fv2jxpg3ope" path="res://Scenes/DeckSession.tscn" id="3_ngawh"]
+
+[node name="Main" type="Node2D"]
+
+[node name="DeckCore" parent="." instance=ExtResource("2_da83w")]
+
+[node name="DeckSession" parent="." instance=ExtResource("3_ngawh")]
+
+[editable path="DeckSession"]

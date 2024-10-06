@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0fv2jxpg3ope"]
+
+[ext_resource type="Script" path="res://scripts/DeckSession.gd" id="1_15o4y"]
+[ext_resource type="FontFile" uid="uid://dh7wouhqm0k03" path="res://assets/fonts/Nunito-VariableFont_wght.ttf" id="1_fppl7"]
+
+[node name="DeckSession" type="Node"]
+script = ExtResource("1_15o4y")
+
+[node name="StartGame" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -44.0
+offset_top = -15.5
+offset_right = 44.0
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("1_fppl7")
+theme_override_font_sizes/font_size = 30
+text = "Start Game"
+
+[connection signal="pressed" from="StartGame" to="." method="_on_start_game_pressed"]
