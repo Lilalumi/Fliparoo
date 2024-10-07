@@ -92,24 +92,30 @@ func _on_button_pressed():
 		
 # Flip hacia el dorso
 func _flip_to_back():
+	$Swipe2.play()
 	animation_player.play("flip_to_back")
 	await animation_player.animation_finished
 	_show_back()
-	
+		
 # Flip hacia el frente
 func _flip_to_front():
+	$Swipe1.play()
 	animation_player.play("flip_to_front")
 	await animation_player.animation_finished
 	_show_front()
-	
+		
 # Flip hacia el dorso
 func _flip_to_back_failed_check():
+	await get_tree().create_timer(0.25).timeout
+	$PopupClose.play()
 	animation_player.play("flip_to_back")
 	await animation_player.animation_finished
 	_show_back()
 	
 # Desinstanciar con efecto de fade y crecimiento
 func _destroy_with_effect():
+	await get_tree().create_timer(0.25).timeout
+	$PopupOpen.play()
 	animation_player.play("destroy")
 	await animation_player.animation_finished
 	emit_signal("card_destroyed", self)

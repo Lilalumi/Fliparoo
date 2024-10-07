@@ -1,8 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://dypd2wntakcct"]
+[gd_scene load_steps=14 format=3 uid="uid://dypd2wntakcct"]
 
 [ext_resource type="Script" path="res://scripts/CardInPlay.gd" id="1_helj1"]
 [ext_resource type="Texture2D" uid="uid://r5lct8y607wa" path="res://assets/art/sprites/cards/others/back.png" id="2_6casx"]
 [ext_resource type="Texture2D" uid="uid://bu0j236u5arcf" path="res://assets/art/sprites/cards/others/question.png" id="2_16aay"]
+[ext_resource type="AudioStream" uid="uid://b2tnlj4ortpr7" path="res://assets/sounds/sfx/JDSherbert - Ultimate UI SFX Pack - Swipe - 1.wav" id="4_hv4lo"]
+[ext_resource type="AudioStream" uid="uid://c2dg6jbqmaj5b" path="res://assets/sounds/sfx/JDSherbert - Ultimate UI SFX Pack - Swipe - 2.wav" id="5_7wuya"]
+[ext_resource type="AudioStream" uid="uid://2ol41vg3g5ok" path="res://assets/sounds/sfx/JDSherbert - Ultimate UI SFX Pack - Popup Open - 1.wav" id="6_cj8hw"]
+[ext_resource type="AudioStream" uid="uid://bjtql3naxv1pq" path="res://assets/sounds/sfx/JDSherbert - Ultimate UI SFX Pack - Popup Close - 1.wav" id="7_c67ks"]
 
 [sub_resource type="Animation" id="Animation_jy337"]
 length = 0.001
@@ -298,5 +302,17 @@ visible = false
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("2_16aay")
+
+[node name="Swipe1" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_hv4lo")
+
+[node name="Swipe2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_7wuya")
+
+[node name="PopupOpen" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_cj8hw")
+
+[node name="PopupClose" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_c67ks")
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
