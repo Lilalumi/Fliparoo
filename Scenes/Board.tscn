@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c03dhmqd2fjvb"]
+[gd_scene load_steps=12 format=3 uid="uid://c03dhmqd2fjvb"]
 
 [ext_resource type="Script" path="res://scripts/Board.gd" id="1_vswll"]
 [ext_resource type="Texture2D" uid="uid://oygk1ikr7bkj" path="res://assets/art/sprites/parallax/platformer_background_3/Layers/layer07_Sky.png" id="2_jl2fn"]
@@ -9,17 +9,15 @@
 [ext_resource type="Texture2D" uid="uid://b8mngroxuts1c" path="res://assets/art/sprites/parallax/platformer_background_3/Layers/layer02_Trees.png" id="7_a3j1t"]
 [ext_resource type="Texture2D" uid="uid://cksl2d8e1py5f" path="res://assets/art/sprites/parallax/platformer_background_3/Layers/layer01_Ground.png" id="8_lnayh"]
 [ext_resource type="FontFile" uid="uid://gac2u83noh02" path="res://assets/fonts/static/Nunito-Medium.ttf" id="9_j1y75"]
+[ext_resource type="Texture2D" uid="uid://8oxkmw0dbmca" path="res://assets/art/sprites/Background/Fondo.png" id="9_je58u"]
+[ext_resource type="Texture2D" uid="uid://c6my2rsav3glu" path="res://assets/art/sprites/Background/Marco.png" id="10_q7sn1"]
 
 [node name="Board" type="Node2D"]
 script = ExtResource("1_vswll")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-visible = false
-offset_right = 1280.0
-offset_bottom = 720.0
-color = Color(0.483208, 0.816166, 0.747445, 1)
-
 [node name="Parallax" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
 
 [node name="Parallax2D" type="Parallax2D" parent="Parallax"]
 scroll_scale = Vector2(1.5, 1.5)
@@ -83,6 +81,19 @@ autoscroll = Vector2(35, 0)
 position = Vector2(640, 360)
 scale = Vector2(0.667, 0.667)
 texture = ExtResource("8_lnayh")
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(-8, -8)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D2" type="Sprite2D" parent="Node2D"]
+modulate = Color(1, 1, 1, 0.505882)
+position = Vector2(410, 371)
+texture = ExtResource("9_je58u")
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D"]
+position = Vector2(410, 370)
+texture = ExtResource("10_q7sn1")
 
 [node name="UI" type="Node2D" parent="."]
 

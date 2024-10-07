@@ -20,4 +20,4 @@ func _initialize_deck_core():
 			
 			deck_core.append(card)
 			
-	print("DeckCore initialized with: ", deck_core.size(), "cards")
+	

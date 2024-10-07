@@ -7,7 +7,6 @@ var deck_playing = []
 func _ready():
 	_generate_deck()
 	_shuffle_deck()
-	_print_deck()
 	
 	
 func _generate_deck():
@@ -20,11 +19,7 @@ func _generate_deck():
 		
 func _shuffle_deck():
 	deck_playing.shuffle()
-	
-func _print_deck():
-	print("DeckPlaying contains: ", deck_playing.size(), "cards")
-	for card in deck_playing:
-		print("Card: ", card.suit, card.number, "Modifier: ", card.modifier)
+
 
 
 	

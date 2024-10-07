@@ -11,18 +11,16 @@ var deck_session = []
 func _ready():
 	if not start_button.is_connected("pressed", Callable(self, "_on_start_game_pressed")):
 		start_button.connect("pressed", Callable(self, "_on_start_game_pressed"))
-	print(LevelSelectorScene)
-	
+		
 # Función que se llama cuando se presiona el botón "Start Game"
 func _on_start_game_pressed():
 	_copy_deck()
 	start_button.visible = false
-	print("Deck Session initialized with: ", deck_session.size(), "cards")
+	
 	if LevelSelectorScene is PackedScene:
 		var instance = LevelSelectorScene.instantiate()
 		add_child(instance)
 		instance.set_global_position(Vector2.ZERO)
-		print(LevelSelectorScene)
 	else:
 		print("Error: El recurso no es un PackedScene")
 	
