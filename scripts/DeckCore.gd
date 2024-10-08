@@ -1,6 +1,8 @@
 extends Node
 
 var deck_core = []
+var hand_size_core = 2
+var unflip_count_core = 2
 
 @onready var texture_manager = $CardTextureManager
 

@@ -1,6 +1,8 @@
 extends Node
 
 var deck_session = []
+var hand_size_session = 0
+var unflip_count_session = 0
 
 @onready var start_button = $StartGame
 
@@ -30,3 +32,6 @@ func _copy_deck():
 	deck_session.clear()  # Limpiar cualquier carta existente en deck_session
 	for card in deck_core.deck_core:
 		deck_session.append(card.duplicate())  # Hacer una copia de cada carta para evitar referencias directas
+	hand_size_session = deck_core.hand_size_core
+	unflip_count_session = deck_core.unflip_count_core
+	

@@ -5,6 +5,7 @@ extends Node2D
 @onready var button = $Button
 @onready var animation_player = $AnimationPlayer
 
+@onready var board = get_node("/root/Board")
 @onready var deck_playing = get_node("/root/Board/DeckPlaying")
 var remaining_cards = 0
 
@@ -55,6 +56,7 @@ func _process(delta):
 	var rotation_offset = sin(time * rotation_speed) * deg_to_rad(rotation_amplitude)
 	rotation = rotation_offset
 	
+	# Aquí maneja el input normalmente (clics, teclas, etc.)
 
 func _choose_card():
 	remaining_cards = int(deck_playing.deck_playing.size())
@@ -86,23 +88,37 @@ func _show_back():
 	
 func _on_button_pressed():
 	if up_front:
-		_flip_to_back()
-	else:
+		if board.cards_up_front < board.hand_size_updated:
+			_flip_to_back()
+	if up_down:
 		_flip_to_front()
+	else:
+		print("Too many cards up front. Wait before flipping more.")	
 		
 # Flip hacia el dorso
 func _flip_to_back():
-	$Swipe2.play()
-	animation_player.play("flip_to_back")
-	await animation_player.animation_finished
-	_show_back()
+	if board.unflip_count_updated >= 1:
+		$Swipe2.play()
+		animation_player.play("flip_to_back")
+		await animation_player.animation_finished
+		_show_back()
+				
+		board.unflip_count_updated -= 1
+		board._update_unflip_label()
+		print("unflip_count_updated after flip:", board.unflip_count_updated)
+		return true  # Retornar true si el flip fue exitoso
+	else:
+		print("Not enough flips available.")
+		return false  # Retornar false si no se pudo hacer el flip
 		
 # Flip hacia el frente
 func _flip_to_front():
-	$Swipe1.play()
-	animation_player.play("flip_to_front")
-	await animation_player.animation_finished
-	_show_front()
+	if board.cards_up_front < board.hand_size_updated:
+		board.cards_up_front += 1
+		$Swipe1.play()
+		animation_player.play("flip_to_front")
+		await animation_player.animation_finished
+		_show_front()
 		
 # Flip hacia el dorso
 func _flip_to_back_failed_check():
@@ -110,6 +126,7 @@ func _flip_to_back_failed_check():
 	$PopupClose.play()
 	animation_player.play("flip_to_back")
 	await animation_player.animation_finished
+	board._update_unflip_label()
 	_show_back()
 	
 # Desinstanciar con efecto de fade y crecimiento
@@ -119,4 +136,5 @@ func _destroy_with_effect():
 	animation_player.play("destroy")
 	await animation_player.animation_finished
 	emit_signal("card_destroyed", self)
+	board._update_unflip_label()
 	queue_free()  # Destruir el nodo

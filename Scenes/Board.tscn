@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c03dhmqd2fjvb"]
+[gd_scene load_steps=17 format=3 uid="uid://c03dhmqd2fjvb"]
 
 [ext_resource type="Script" path="res://scripts/Board.gd" id="1_vswll"]
 [ext_resource type="Texture2D" uid="uid://oygk1ikr7bkj" path="res://assets/art/sprites/parallax/platformer_background_3/Layers/layer07_Sky.png" id="2_jl2fn"]
@@ -8,9 +8,14 @@
 [ext_resource type="Texture2D" uid="uid://kmvcgp1tee5c" path="res://assets/art/sprites/parallax/platformer_background_3/Layers/layer03_Hills_1.png" id="6_khqji"]
 [ext_resource type="Texture2D" uid="uid://b8mngroxuts1c" path="res://assets/art/sprites/parallax/platformer_background_3/Layers/layer02_Trees.png" id="7_a3j1t"]
 [ext_resource type="Texture2D" uid="uid://cksl2d8e1py5f" path="res://assets/art/sprites/parallax/platformer_background_3/Layers/layer01_Ground.png" id="8_lnayh"]
-[ext_resource type="FontFile" uid="uid://gac2u83noh02" path="res://assets/fonts/static/Nunito-Medium.ttf" id="9_j1y75"]
 [ext_resource type="Texture2D" uid="uid://8oxkmw0dbmca" path="res://assets/art/sprites/Background/Fondo.png" id="9_je58u"]
 [ext_resource type="Texture2D" uid="uid://c6my2rsav3glu" path="res://assets/art/sprites/Background/Marco.png" id="10_q7sn1"]
+[ext_resource type="Script" path="res://scripts/label.gd" id="11_phhkd"]
+[ext_resource type="FontFile" uid="uid://dh7wouhqm0k03" path="res://assets/fonts/Nunito-VariableFont_wght.ttf" id="11_waxsc"]
+[ext_resource type="FontFile" uid="uid://cjtkhhdfm1vie" path="res://assets/fonts/Kaph-Regular.ttf" id="12_a8ck5"]
+[ext_resource type="Texture2D" uid="uid://d15txh20w0s3y" path="res://assets/art/sprites/Background/Fondo_timer.png" id="13_6hn57"]
+[ext_resource type="Texture2D" uid="uid://cllrsofkxbtax" path="res://assets/art/sprites/Background/Under_timer.png" id="13_k8ffr"]
+[ext_resource type="Texture2D" uid="uid://bt818bex4dnrl" path="res://assets/art/sprites/Background/Marco_timer.png" id="14_y4b07"]
 
 [node name="Board" type="Node2D"]
 script = ExtResource("1_vswll")
@@ -22,6 +27,7 @@ metadata/_edit_group_ = true
 [node name="Parallax2D" type="Parallax2D" parent="Parallax"]
 scroll_scale = Vector2(1.5, 1.5)
 repeat_size = Vector2(1280, 0)
+autoscroll = Vector2(5, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax/Parallax2D"]
 position = Vector2(640, 360)
@@ -97,11 +103,74 @@ texture = ExtResource("10_q7sn1")
 
 [node name="UI" type="Node2D" parent="."]
 
+[node name="Label" type="Label" parent="UI"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 1240.0
+offset_right = 1280.0
+offset_bottom = 23.0
+grow_horizontal = 0
+theme_override_fonts/font = ExtResource("11_waxsc")
+theme_override_font_sizes/font_size = 12
+text = "FPS"
+script = ExtResource("11_phhkd")
+
 [node name="Deck" type="Label" parent="UI"]
 offset_left = 952.0
 offset_top = 56.0
 offset_right = 1054.0
 offset_bottom = 79.0
-theme_override_colors/font_color = Color(0.853044, 0.954619, 0.405745, 1)
-theme_override_fonts/font = ExtResource("9_j1y75")
+theme_override_fonts/font = ExtResource("12_a8ck5")
 theme_override_font_sizes/font_size = 31
+
+[node name="Unflip" type="Label" parent="UI"]
+offset_left = 960.0
+offset_top = 128.0
+offset_right = 1062.0
+offset_bottom = 171.0
+theme_override_fonts/font = ExtResource("12_a8ck5")
+theme_override_font_sizes/font_size = 31
+
+[node name="Points" type="Label" parent="UI"]
+offset_left = 960.0
+offset_top = 183.0
+offset_right = 1062.0
+offset_bottom = 226.0
+theme_override_fonts/font = ExtResource("12_a8ck5")
+theme_override_font_sizes/font_size = 31
+
+[node name="Goal" type="Label" parent="UI"]
+offset_left = 960.0
+offset_top = 240.0
+offset_right = 1062.0
+offset_bottom = 283.0
+theme_override_fonts/font = ExtResource("12_a8ck5")
+theme_override_font_sizes/font_size = 31
+
+[node name="FEVER" type="Label" parent="UI"]
+offset_left = 960.0
+offset_top = 287.0
+offset_right = 1062.0
+offset_bottom = 330.0
+theme_override_fonts/font = ExtResource("12_a8ck5")
+theme_override_font_sizes/font_size = 31
+
+[node name="Timebar" type="TextureProgressBar" parent="UI"]
+offset_left = 809.0
+offset_top = 17.0
+offset_right = 1255.0
+offset_bottom = 73.0
+stretch_margin_right = 50
+texture_under = ExtResource("13_k8ffr")
+texture_over = ExtResource("14_y4b07")
+texture_progress = ExtResource("13_6hn57")
+
+[node name="Timer" type="Label" parent="UI"]
+offset_left = 833.0
+offset_top = 29.0
+offset_right = 915.0
+offset_bottom = 61.0
+theme_override_fonts/font = ExtResource("12_a8ck5")
+theme_override_font_sizes/font_size = 27
+text = "TIME"
