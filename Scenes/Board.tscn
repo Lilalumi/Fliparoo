@@ -117,44 +117,49 @@ text = "FPS"
 script = ExtResource("11_phhkd")
 
 [node name="Deck" type="Label" parent="UI"]
-offset_left = 952.0
-offset_top = 56.0
-offset_right = 1054.0
-offset_bottom = 79.0
+offset_left = 833.0
+offset_top = 168.0
+offset_right = 937.0
+offset_bottom = 204.0
 theme_override_fonts/font = ExtResource("12_a8ck5")
 theme_override_font_sizes/font_size = 31
+text = "DECK"
 
 [node name="Unflip" type="Label" parent="UI"]
-offset_left = 960.0
-offset_top = 128.0
-offset_right = 1062.0
-offset_bottom = 171.0
+offset_left = 1040.0
+offset_top = 168.0
+offset_right = 1180.0
+offset_bottom = 211.0
 theme_override_fonts/font = ExtResource("12_a8ck5")
 theme_override_font_sizes/font_size = 31
+text = "UNFLIP"
 
 [node name="Points" type="Label" parent="UI"]
-offset_left = 960.0
-offset_top = 183.0
-offset_right = 1062.0
-offset_bottom = 226.0
+offset_left = 832.0
+offset_top = 123.0
+offset_right = 977.0
+offset_bottom = 166.0
 theme_override_fonts/font = ExtResource("12_a8ck5")
 theme_override_font_sizes/font_size = 31
+text = "POINTS"
 
 [node name="Goal" type="Label" parent="UI"]
-offset_left = 960.0
-offset_top = 240.0
-offset_right = 1062.0
-offset_bottom = 283.0
+offset_left = 832.0
+offset_top = 80.0
+offset_right = 934.0
+offset_bottom = 123.0
 theme_override_fonts/font = ExtResource("12_a8ck5")
 theme_override_font_sizes/font_size = 31
+text = "GOAL"
 
 [node name="FEVER" type="Label" parent="UI"]
-offset_left = 960.0
-offset_top = 287.0
-offset_right = 1062.0
-offset_bottom = 330.0
+offset_left = 833.0
+offset_top = 256.0
+offset_right = 956.0
+offset_bottom = 299.0
 theme_override_fonts/font = ExtResource("12_a8ck5")
 theme_override_font_sizes/font_size = 31
+text = "FEVER"
 
 [node name="Timebar" type="TextureProgressBar" parent="UI"]
 offset_left = 809.0

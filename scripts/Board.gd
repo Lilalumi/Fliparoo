@@ -75,7 +75,6 @@ func _start_game_timer():
 	time_bar.max_value = 300  # Máximo valor de la barra de tiempo (5 minutos)
 	time_bar.value = 300  # Establece la barra en el valor máximo al inicio
 
-
 func _format_time(seconds: float) -> String:
 	var minutes = int(seconds) / 60
 	var secs = int(seconds) % 60
@@ -104,9 +103,7 @@ func _copy_values_from_playing():
 		await get_tree().create_timer(0.5).timeout
 		hand_size_updated = hand_size_board
 		unflip_count_updated = unflip_count_board
-
-		print("Hand size board:", hand_size_board, " Unflip count board:", unflip_count_board)
-		print("Hand size updated:", hand_size_updated, "Unflip count updated", unflip_count_updated)
+		_update_unflip_label()
 	else:
 		print("Error: DeckPlaying instance not found.")
 
@@ -185,42 +182,33 @@ func check_value():
 		# 1. True Par: Mismo suit y mismo número
 		if card1["suit"] == card2["suit"] and card1["number"] == card2["number"]:
 			print("True Par: Both cards are the same suit and number!")
-			var points = (card1["number"] * card2["number"]) * (unflip_count_updated + 1)
-			print("Calculation: (", card1["number"], "*", card2["number"], ") * (", unflip_count_updated, "+ 1 ) = ", points)
+			var points = roundi(card1["number"] * card2["number"]) * ( 0.1 * unflip_count_updated + 1) * ( 0.1 * fever_count + 1)
+			print("Calculation: (", card1["number"], "*", card2["number"], ") * ( 0.1 *", unflip_count_updated, "+ 1 ) ", ") * ( 0.1 *", fever_count, ") =", points)
 			point_count += points
 			print("Points awarded (True Par):", points)
-			fever_count += 1
-			fever_label.text = "FEVER: " + str(fever_count)
-			if fever_count > 0:
-				fever_label.visible = true
+			_add_fever()
 			_trigger_card_destruction(up_front_cards)
 			_point_check()
 
 		# 2. Par Suit: Mismo suit
 		elif card1["suit"] == card2["suit"]:
 			print("Par Suit: Both cards have the same suit!")
-			var points = (card1["number"] + card2["number"]) * (unflip_count_updated + 1)
-			print("Calculation: (", card1["number"], "+", card2["number"], ") * (", unflip_count_updated, "+ 1 ) = ", points)
+			var points = roundi(card1["number"] + card2["number"]) * ( 0.1 * unflip_count_updated + 1) * ( 0.1 * fever_count + 1)
+			print("Calculation: (", card1["number"], "+", card2["number"], ") * ( 0.1 *", unflip_count_updated, "+ 1 ) ", ") * ( 0.1 *", fever_count, ") =", points)
 			point_count += points
 			print("Points awarded (Par Suit):", points)
-			fever_count += 1
-			fever_label.text = "FEVER: " + str(fever_count)
-			if fever_count > 0:
-				fever_label.visible = true
+			_add_fever()
 			_trigger_card_destruction(up_front_cards)
 			_point_check()
 
 		# 3. Par Number: Mismo número
 		elif card1["number"] == card2["number"]:
 			print("Par Number: Both cards have the same number!")
-			var points = (card1["number"] + card2["number"]) * (unflip_count_updated + 1)
-			print("Calculation: (", card1["number"], "+", card2["number"], ") * (", unflip_count_updated, "+ 1 ) = ", points)
+			var points = roundi(card1["number"] + card2["number"]) * ( 0.1 * unflip_count_updated + 1) * ( 0.1 * fever_count + 1)
+			print("Calculation: (", card1["number"], "+", card2["number"], ") * ( 0.1 *", unflip_count_updated, "+ 1 ) ", ") * ( 0.1 *", fever_count, ") =", points)
 			point_count += points
 			print("Points awarded (Par Number):", points)
-			fever_count += 1
-			fever_label.text = "FEVER: " + str(fever_count)
-			if fever_count > 0:
-				fever_label.visible = true
+			_add_fever()
 			_trigger_card_destruction(up_front_cards)
 			_point_check()
 
@@ -288,6 +276,11 @@ func _on_game_timer_timeout():
 	print("Game Over - Time's Up!")
 	_trigger_game_over()
 
+func _add_fever():
+	fever_count += 1
+	fever_label.text = "FEVER: " + str(fever_count)
+	if fever_count > 4:
+		fever_label.visible = true
 # Handle the game over logic (this can be customized further)
 func _trigger_game_over():
 	# Show a game over screen, disable inputs, etc.
